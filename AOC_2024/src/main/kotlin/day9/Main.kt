@@ -12,6 +12,7 @@ class FileCompacter(diskMap: String) {
     init {
         generateFileIds()
         rearrangeFileBlocks()
+//        rearrangeFiles()
         calculateChecksum()
     }
 
@@ -60,14 +61,17 @@ class FileCompacter(diskMap: String) {
 //        println("Arranged Blocks: ${blocks.joinToString("")}")
     }
 
-    fun calculateChecksum(): Long {
+    // part 2
+    private fun rearrangeFiles() {
+
+    }
+
+    fun calculateChecksum() {
         for ((index, data) in blocks.withIndex()) {
             if (data != ".") {
                 checksum += index * data.toInt()
             }
         }
-
-        return checksum
     }
 }
 
@@ -76,7 +80,7 @@ fun main() {
 
     sampleInputs.forEach { input ->
         val compacter = FileCompacter(input)
-        println("Checksum: ${compacter.calculateChecksum()}")
+        println("Input $input -> Checksum: ${compacter.checksum}")
     }
     println()
 
